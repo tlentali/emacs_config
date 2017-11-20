@@ -72,10 +72,42 @@
 ;;get anaconda python3 interpreter
 (setq python-shell-interpreter "/home/tom/anaconda3/bin/python3")
 
-
 ;; THEME
 ;; --------------------------------------
 ;; theme from sublime text
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 ;;(load-theme 'tangotango t)
 (load-theme 'monokai t)
+
+;; Ditaa
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((ditaa . t)))
+
+;; OS specific to show ditaa jar
+
+(cond
+ ((string-equal system-type "windows-nt") ; Microsoft Windows
+
+  (progn
+    (setq-default ispell-program-name "C:/bin/Aspell/bin/aspell.exe")
+      (setq org-ditaa-jar-path "c:/bin/ditaa/ditaa.jar")
+      )
+  )
+ ((string-equal system-type "gnu/linux") ; Linux
+  (progn
+    (setq x-select-enable-clipboard t)
+      (setq org-ditaa-jar-path "/usr/bin/ditaa")
+      )
+  )
+     )
+
+;;typed text replaces the selection if the selection is active
+(delete-selection-mode 1)
+
+;; no tabs
+(setq-default indent-tabs-mode nil) ; always replace tabs with spaces
+(setq-default tab-width 4) ; set tab width to 4 for all buffers
+
+;; no line number
+(global-linum-mode 0)
