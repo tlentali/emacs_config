@@ -79,6 +79,8 @@
 ;;(load-theme 'tangotango t)
 (load-theme 'monokai t)
 
+;; background terminal #300a24
+
 ;; Ditaa
 (org-babel-do-load-languages
  'org-babel-load-languages
